@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ReactPersistRoute /> when route changes should call adpater's onSave with the serialized location for basic urls 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "mypwa",
+      Object {
+        "hash": "",
+        "host": "mypwa.com",
+        "hostname": "mypwa.com",
+        "href": "https://mypwa.com/u/1",
+        "origin": "",
+        "pathname": "/u/1",
+        "port": "",
+        "protocol": "https:",
+        "search": "",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`<ReactPersistRoute /> when route changes should call adpater's onSave with the serialized location for urls with hash 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "mypwa",
+      Object {
+        "hash": "#input",
+        "host": "mypwa",
+        "hostname": "mypwa",
+        "href": "https://mypwa/u/1#input",
+        "origin": "",
+        "pathname": "/u/1",
+        "port": "",
+        "protocol": "https:",
+        "search": "",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`<ReactPersistRoute /> when route changes should call adpater's onSave with the serialized location for urls with port 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "mypwa",
+      Object {
+        "hash": "",
+        "host": "mypwa:8080",
+        "hostname": "mypwa",
+        "href": "https://mypwa:8080/u/1",
+        "origin": "",
+        "pathname": "/u/1",
+        "port": "8080",
+        "protocol": "https:",
+        "search": "",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`<ReactPersistRoute /> when route changes should call adpater's onSave with the serialized location for urls with search 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "mypwa",
+      Object {
+        "hash": "",
+        "host": "mypwa.com",
+        "hostname": "mypwa.com",
+        "href": "https://mypwa.com/u/1?q=getit",
+        "origin": "",
+        "pathname": "/u/1",
+        "port": "",
+        "protocol": "https:",
+        "search": "?q=getit",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
