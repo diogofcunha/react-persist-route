@@ -1,7 +1,18 @@
 # 💾 react-persist-route 📱
 
-[![npm version](https://badge.fury.io/js/react-persist-route.svg)](https://badge.fury.io/js/react-persist-route)
+[![Travis][build-badge]][build]
+[![npm package][npm-badge]][npm]
+[![Coveralls][coveralls-badge]][coveralls]
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
+[build-badge]: https://img.shields.io/travis/diogofcunha/react-persist-route/master.png?style=flat-square
+[build]: https://travis-ci.org/diogofcunha/react-persist-route
+[npm-badge]: https://img.shields.io/npm/v/react-persist-route.png?style=flat-square
+[npm]: https://www.npmjs.com/package/react-persist-route
+[coveralls-badge]: https://img.shields.io/coveralls/diogofcunha/react-persist-route/master.png?style=flat-square
+[coveralls]: https://coveralls.io/github/diogofcunha/react-persist-route
+
+### 🚀 Save your url information, anywhere and anyhow.
 
 This package enables to possibility of saving url transitions with minimum work, it is compatible with your favorite routers, **react-router** and **@reach/router**.
 
