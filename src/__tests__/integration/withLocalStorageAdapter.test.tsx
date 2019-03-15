@@ -43,6 +43,7 @@ describe("Local storage adapter integration", () => {
     };
 
     const props: Props<History> = {
+      shouldSaveRoute: () => true,
       history,
       adapter: createLocalStorageAdapter(key, fallback)
     };
