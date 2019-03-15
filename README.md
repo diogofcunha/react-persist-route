@@ -1,5 +1,8 @@
 # 💾 react-persist-route 📱
 
+[![npm version](https://badge.fury.io/js/react-persist-route.svg)](https://badge.fury.io/js/react-persist-route)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
 This package enables to possibility of saving url transitions with minimum work, it is compatible with your favorite routers, **react-router** and **@reach/router**.
 
 # The problem
