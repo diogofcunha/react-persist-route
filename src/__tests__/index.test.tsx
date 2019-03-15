@@ -14,7 +14,7 @@ describe("<ReactPersistRoute />", () => {
   });
   afterEach(cleanup);
 
-  const setup = () => {
+  const setup = (extraProps: Partial<Props<History>> = {}) => {
     const toEmit: LocationListener[] = [];
 
     const emit = (location: Location) => {
@@ -33,15 +33,16 @@ describe("<ReactPersistRoute />", () => {
       push: jest.fn()
     };
 
-    const props: Props<History> = {
+    const props: Props<History> = ({
       history,
       adapter: {
         onClear: jest.fn(),
         onLoad: jest.fn(),
         onSave: jest.fn(),
         getKey: () => key
-      }
-    };
+      },
+      ...extraProps
+    } as Partial<Props<History>>) as Props<History>;
 
     return {
       props,
@@ -251,6 +252,55 @@ describe("<ReactPersistRoute />", () => {
       jest.runAllTimers();
 
       expect(props.adapter.onSave).toMatchSnapshot();
+    });
+
+    describe("an shouldSaveRoute is supplied", () => {
+      test("should call shouldSaveRoute when changing routes with the value that is candidate for save", () => {
+        const shouldSaveRoute = jest.fn();
+        const { props, emit } = setup({ shouldSaveRoute });
+
+        render(<ReactPersistRoute {...props} />);
+
+        jest.runAllTimers();
+
+        // Change route.
+        emit(getLocation("https://mypwa.com/u/1"));
+        jest.runAllTimers();
+
+        expect(shouldSaveRoute).toHaveBeenCalledWith({
+          hash: "",
+          pathname: "/u/1",
+          search: ""
+        });
+      });
+
+      test("should call adpater's onSave with the serialized location when shouldSaveRoute returns true", () => {
+        const { props, emit } = setup({ shouldSaveRoute: () => true });
+
+        render(<ReactPersistRoute {...props} />);
+
+        jest.runAllTimers();
+
+        // Change route.
+        emit(getLocation("https://mypwa.com/u/1"));
+        jest.runAllTimers();
+
+        expect(props.adapter.onSave).toMatchSnapshot();
+      });
+
+      test("should not call adpater's onSave with the serialized location when shouldSaveRoute returns false", () => {
+        const { props, emit } = setup({ shouldSaveRoute: () => false });
+
+        render(<ReactPersistRoute {...props} />);
+
+        jest.runAllTimers();
+
+        // Change route.
+        emit(getLocation("https://mypwa.com/u/1"));
+        jest.runAllTimers();
+
+        expect(props.adapter.onSave).not.toHaveBeenCalled();
+      });
     });
   });
 });

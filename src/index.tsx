@@ -24,6 +24,7 @@ export interface PersistenceAdapter {
 export interface Props<H extends History> {
   history: H;
   adapter: PersistenceAdapter;
+  shouldSaveRoute: (location: SerializableLocation) => boolean;
 }
 
 export default class ReactPersistRoute<
@@ -31,6 +32,10 @@ export default class ReactPersistRoute<
 > extends React.Component<Props<H>> {
   private _isMounted = true;
   private _unlisten?: UnregisterCallback;
+
+  static defaultProps = {
+    shouldSaveRoute: () => true
+  };
 
   async componentDidMount() {
     const {
@@ -56,14 +61,19 @@ export default class ReactPersistRoute<
 
   onRouteChanged: LocationListener = ({ hash, pathname, search }) => {
     const {
-      adapter: { getKey, onSave }
+      adapter: { getKey, onSave },
+      shouldSaveRoute
     } = this.props;
 
-    onSave(getKey(), {
+    const toSave: SerializableLocation = {
       hash,
       pathname,
       search
-    });
+    };
+
+    if (shouldSaveRoute(toSave)) {
+      onSave(getKey(), toSave);
+    }
   };
 
   render() {

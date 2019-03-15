@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<ReactPersistRoute /> when route changes an shouldSaveRoute is supplied should call adpater's onSave with the serialized location when shouldSaveRoute returns true 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "mypwa",
+      Object {
+        "hash": "",
+        "pathname": "/u/1",
+        "search": "",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`<ReactPersistRoute /> when route changes should call adpater's onSave with the serialized location for basic urls 1`] = `
 [MockFunction] {
   "calls": Array [
