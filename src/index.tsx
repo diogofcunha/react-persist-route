@@ -4,23 +4,15 @@ export type Action = "PUSH" | "POP" | "REPLACE";
 export type UnregisterCallback = () => void;
 export type LocationListener = (location: Location, action: Action) => void;
 
-export interface History {
-  listen(listener: LocationListener): UnregisterCallback;
-  push(path: string): void;
-}
-
 export type SerializableLocation = Pick<
   Location,
-  | "hash"
-  | "host"
-  | "hostname"
-  | "href"
-  | "origin"
-  | "pathname"
-  | "port"
-  | "protocol"
-  | "search"
+  "hash" | "pathname" | "search"
 >;
+
+export interface History {
+  listen(listener: LocationListener): UnregisterCallback;
+  push(path: SerializableLocation): void;
+}
 
 export interface PersistenceAdapter {
   getKey: () => string;
@@ -50,7 +42,7 @@ export default class ReactPersistRoute<
 
     if (this._isMounted) {
       if (location) {
-        history.push(location.href);
+        history.push(location);
       }
 
       this._unlisten = history.listen(this.onRouteChanged);
@@ -62,30 +54,14 @@ export default class ReactPersistRoute<
     this._unlisten && this._unlisten();
   }
 
-  onRouteChanged: LocationListener = ({
-    hash,
-    host,
-    hostname,
-    href,
-    origin,
-    pathname,
-    port,
-    protocol,
-    search
-  }) => {
+  onRouteChanged: LocationListener = ({ hash, pathname, search }) => {
     const {
       adapter: { getKey, onSave }
     } = this.props;
 
     onSave(getKey(), {
       hash,
-      host,
-      hostname,
-      href,
-      origin,
       pathname,
-      port,
-      protocol,
       search
     });
   };

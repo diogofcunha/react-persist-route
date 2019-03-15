@@ -12,25 +12,13 @@ describe("local storage adapter", () => {
     test("should save a location to local storage when there is none saved", async () => {
       const adapter = createLocalStorageAdapter(appKey, {
         hash: "",
-        host: "mypwa.com",
-        hostname: "mypwa.com",
-        href: "https://mypwa.com/home",
-        origin: "",
         pathname: "/u/1",
-        port: "",
-        protocol: "https:",
         search: ""
       });
 
       const locationToSave: SerializableLocation = {
         hash: "",
-        host: "mypwa.com",
-        hostname: "mypwa.com",
-        href: "https://mypwa.com/u/235",
-        origin: "",
         pathname: "/u/235",
-        port: "",
-        protocol: "https:",
         search: ""
       };
 
@@ -40,15 +28,9 @@ describe("local storage adapter", () => {
     });
 
     test("should save a location to local storage when there is one saved", async () => {
-      const originalLocation = {
+      const originalLocation: SerializableLocation = {
         hash: "",
-        host: "mypwa.com",
-        hostname: "mypwa.com",
-        href: "https://mypwa.com/home",
-        origin: "",
         pathname: "/u/1",
-        port: "",
-        protocol: "https:",
         search: ""
       };
 
@@ -58,13 +40,7 @@ describe("local storage adapter", () => {
 
       const locationToSave: SerializableLocation = {
         hash: "",
-        host: "mypwa.com",
-        hostname: "mypwa.com",
-        href: "https://mypwa.com/u/234535",
-        origin: "",
         pathname: "/u/234535",
-        port: "",
-        protocol: "https:",
         search: ""
       };
 
@@ -98,15 +74,9 @@ describe("local storage adapter", () => {
     });
 
     test("should return the fallback when there is a problem parsing the saved location", async () => {
-      const originalLocation = {
+      const originalLocation: SerializableLocation = {
         hash: "",
-        host: "mypwa.com",
-        hostname: "mypwa.com",
-        href: "https://mypwa.com/home",
-        origin: "",
         pathname: "/home",
-        port: "",
-        protocol: "https:",
         search: ""
       };
 
@@ -122,13 +92,7 @@ describe("local storage adapter", () => {
     test("should return the saved location when there is one", async () => {
       const savedLocation: SerializableLocation = {
         hash: "",
-        host: "mypwa.com",
-        hostname: "mypwa.com",
-        href: "https://mypwa.com/u/234535",
-        origin: "",
         pathname: "/u/234535",
-        port: "",
-        protocol: "https:",
         search: ""
       };
 
@@ -136,13 +100,7 @@ describe("local storage adapter", () => {
 
       const adapter = createLocalStorageAdapter(appKey, {
         hash: "",
-        host: "mypwa.com",
-        hostname: "mypwa.com",
-        href: "https://mypwa.com/home",
-        origin: "",
         pathname: "/home",
-        port: "",
-        protocol: "https:",
         search: ""
       });
 
@@ -156,13 +114,7 @@ describe("local storage adapter", () => {
     test("should clear the saved location from local storage", async () => {
       const savedLocation: SerializableLocation = {
         hash: "",
-        host: "mypwa.com",
-        hostname: "mypwa.com",
-        href: "https://mypwa.com/u/234535",
-        origin: "",
         pathname: "/u/234535",
-        port: "",
-        protocol: "https:",
         search: ""
       };
 
@@ -170,13 +122,7 @@ describe("local storage adapter", () => {
 
       const adapter = createLocalStorageAdapter(appKey, {
         hash: "",
-        host: "mypwa.com",
-        hostname: "mypwa.com",
-        href: "https://mypwa.com/home",
-        origin: "",
         pathname: "/home",
-        port: "",
-        protocol: "https:",
         search: ""
       });
 

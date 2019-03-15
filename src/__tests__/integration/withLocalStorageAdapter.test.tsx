@@ -38,13 +38,7 @@ describe("Local storage adapter integration", () => {
 
     const fallback: SerializableLocation = {
       hash: "",
-      host: "mypwa.com",
-      hostname: "mypwa.com",
-      href: "https://mypwa.com/home",
-      origin: "",
       pathname: "/home",
-      port: "",
-      protocol: "https:",
       search: ""
     };
 
@@ -92,7 +86,7 @@ describe("Local storage adapter integration", () => {
 
         jest.runAllTimers();
 
-        expect(props.history.push).toHaveBeenCalledWith(fallback.href);
+        expect(props.history.push).toHaveBeenCalledWith(fallback);
       });
     });
 
@@ -105,7 +99,7 @@ describe("Local storage adapter integration", () => {
 
         jest.runAllTimers();
 
-        expect(props.history.push).toHaveBeenCalledWith(fallback.href);
+        expect(props.history.push).toHaveBeenCalledWith(fallback);
       });
 
       test("should push to the saved location when it is valid", () => {
@@ -113,13 +107,7 @@ describe("Local storage adapter integration", () => {
 
         const savedLocation: SerializableLocation = {
           hash: "",
-          host: "mypwa.com",
-          hostname: "mypwa.com",
-          href: "https://mypwa.com/u/diogo/profile",
-          origin: "",
           pathname: "/u/diogo/profile",
-          port: "",
-          protocol: "https:",
           search: ""
         };
 
@@ -129,7 +117,11 @@ describe("Local storage adapter integration", () => {
 
         jest.runAllTimers();
 
-        expect(props.history.push).toHaveBeenCalledWith(savedLocation.href);
+        expect(props.history.push).toHaveBeenCalledWith({
+          hash: "",
+          pathname: "/u/diogo/profile",
+          search: ""
+        });
       });
     });
   });
@@ -149,13 +141,7 @@ describe("Local storage adapter integration", () => {
       expect(JSON.parse(localStorage.getItem(key)!)).toMatchInlineSnapshot(`
 Object {
   "hash": "",
-  "host": "mypwa.com",
-  "hostname": "mypwa.com",
-  "href": "https://mypwa.com/u/1",
-  "origin": "",
   "pathname": "/u/1",
-  "port": "",
-  "protocol": "https:",
   "search": "",
 }
 `);
@@ -175,13 +161,7 @@ Object {
       expect(JSON.parse(localStorage.getItem(key)!)).toMatchInlineSnapshot(`
 Object {
   "hash": "",
-  "host": "mypwa.com",
-  "hostname": "mypwa.com",
-  "href": "https://mypwa.com/u/1?q=getit",
-  "origin": "",
   "pathname": "/u/1",
-  "port": "",
-  "protocol": "https:",
   "search": "?q=getit",
 }
 `);
@@ -201,13 +181,7 @@ Object {
       expect(JSON.parse(localStorage.getItem(key)!)).toMatchInlineSnapshot(`
 Object {
   "hash": "",
-  "host": "mypwa:8080",
-  "hostname": "mypwa",
-  "href": "https://mypwa:8080/u/1",
-  "origin": "",
   "pathname": "/u/1",
-  "port": "8080",
-  "protocol": "https:",
   "search": "",
 }
 `);
@@ -227,13 +201,7 @@ Object {
       expect(JSON.parse(localStorage.getItem(key)!)).toMatchInlineSnapshot(`
 Object {
   "hash": "#input",
-  "host": "mypwa",
-  "hostname": "mypwa",
-  "href": "https://mypwa/u/1#input",
-  "origin": "",
   "pathname": "/u/1",
-  "port": "",
-  "protocol": "https:",
   "search": "",
 }
 `);

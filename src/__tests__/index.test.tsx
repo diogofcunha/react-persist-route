@@ -129,13 +129,7 @@ describe("<ReactPersistRoute />", () => {
             if (k === key) {
               return {
                 hash: "",
-                host: "mypwa.com",
-                hostname: "mypwa.com",
-                href: "https://mypwa.com/u/1",
-                origin: "",
                 pathname: "/u/1",
-                port: "",
-                protocol: "https:",
                 search: ""
               };
             }
@@ -148,9 +142,11 @@ describe("<ReactPersistRoute />", () => {
 
         jest.runAllTimers();
 
-        expect(props.history.push).toHaveBeenCalledWith(
-          "https://mypwa.com/u/1"
-        );
+        expect(props.history.push).toHaveBeenCalledWith({
+          hash: "",
+          pathname: "/u/1",
+          search: ""
+        });
       });
 
       test("should open listen connection", () => {
@@ -161,13 +157,7 @@ describe("<ReactPersistRoute />", () => {
             if (k === key) {
               return {
                 hash: "",
-                host: "mypwa.com",
-                hostname: "mypwa.com",
-                href: "https://mypwa.com/u/1",
-                origin: "",
                 pathname: "/u/1",
-                port: "",
-                protocol: "https:",
                 search: ""
               };
             }
@@ -191,13 +181,7 @@ describe("<ReactPersistRoute />", () => {
             if (k === key) {
               return {
                 hash: "",
-                host: "mypwa.com",
-                hostname: "mypwa.com",
-                href: "https://mypwa.com/u/1",
-                origin: "",
                 pathname: "/u/1",
-                port: "",
-                protocol: "https:",
                 search: ""
               };
             }
