@@ -1,0 +1,25 @@
+sudo: false
+
+language: node_js
+node_js:
+  - 8
+
+before_install:
+  - yarn add codecov.io coveralls -D
+
+script:
+  - yarn build
+  - yarn test --coverage
+
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - npx semantic-release
+
+branches:
+  only:
+    - master
+
+env:
+  global:
+    - CI: true
